@@ -23,3 +23,7 @@ body{
   margin: auto;
   width: 1000px;
 }
+
+.delete{
+  width: 100px;
+}
