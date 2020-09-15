@@ -6,14 +6,12 @@ class Form extends Component {
         return (
             <div className="form">
                 <TextField
-                    id="outlined-basic"
                     label="First Name"
                     defaultValue=""
                     required
                     variant="outlined"
                 />
                 <TextField
-                    id="outlined-basic"
                     label="Last Name"
                     defaultValue=""
                     required
@@ -21,14 +19,12 @@ class Form extends Component {
                 />
                 <br />
                 <TextField
-                    id="outlined-basic"
                     label="Title"
                     defaultValue=""
                     required
                     variant="outlined"
                 />
                 <TextField
-                    id="outlined-basic"
                     label="Question"
                     defaultValue=""
                     required

@@ -14,3 +14,12 @@ body{
   border-top: 1px dotted black;
   width: 750px;
 }
+
+.cardbody {
+  margin: auto;
+}
+
+.cards {
+  margin: auto;
+  width: 1000px;
+}
