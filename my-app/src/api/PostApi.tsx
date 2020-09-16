@@ -18,7 +18,6 @@ function PostApi() {
         question: qt,
         description: dn
     });
-
     const url = 'https://livequeryapi.azurewebsites.net/api/Questions';
     fetch(url, {
         headers: {

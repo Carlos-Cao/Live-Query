@@ -3,19 +3,30 @@ import { Card } from 'react-bootstrap';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
-
+import Detail from './DeleteApi';
+import { Delete } from '@material-ui/icons';
 
 interface Ask {
+    questionID: 0;
     firstName: string;
     lastName: string;
     question: string;
     description: string;
+    data: [];
+}
+let input: any;
+
+function Deletes() {
+    const url = `https://livequeryapi.azurewebsites.net/api/Questions/${input}`;
+    fetch(url, {
+        method: "DELETE",
+    });
+    window.location.reload();
 }
 
 function Api() {
     const url = 'https://livequeryapi.azurewebsites.net/api/Questions';
-    const [questions, setQuestions] = useState<Ask[]>([{ firstName: "", lastName: "", question: "", description: "" }]);
+    const [questions, setQuestions] = useState<Ask[]>([{ questionID: 0, firstName: "", lastName: "", question: "", description: "", data: [] }]);
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
@@ -30,7 +41,8 @@ function Api() {
             {
                 questions.map((qa: any, index: any) => {
                     return (
-                        <div key={'mykey' + index + 10}> {console.log()} <Card className="cards">
+                        <div key={index}> <Card className="cards">
+                            {input = qa.questionID}
                             <Card.Body className="cardbody"> <Card.Title >Name: {qa.firstName} {qa.lastName}</Card.Title>
                                 <Card.Title>Query: <u>{qa.question}</u></Card.Title>
                                 <p>Query Description: {qa.description} </p>
@@ -38,6 +50,7 @@ function Api() {
                             </Card.Body>
                             <div className="buttons">
                                 <Button
+                                    id="updateCard"
                                     variant="contained"
                                     color="primary"
                                     className="delete"
@@ -46,17 +59,18 @@ function Api() {
                                     Update
                                 </Button>
                                 <Button
+                                    id="deleteCard"
                                     variant="contained"
                                     color="secondary"
                                     className="delete"
                                     startIcon={<DeleteIcon />}
+                                    onClick={Deletes}
+
                                 >
                                     Delete
                                 </Button>
                             </div>
-
                         </Card>
-
                             <br />
                         </div>
                     )
@@ -66,5 +80,7 @@ function Api() {
 
     )
 }
+
+
 
 export default Api;
