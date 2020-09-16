@@ -4,6 +4,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
+
+
 interface Ask {
     firstName: string;
     lastName: string;
@@ -32,25 +34,31 @@ function Api() {
                             <Card.Body className="cardbody"> <Card.Title >Name: {qa.firstName} {qa.lastName}</Card.Title>
                                 <Card.Title>Query: <u>{qa.question}</u></Card.Title>
                                 <p>Query Description: {qa.description} </p>
+
                             </Card.Body>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className="delete"
-                                startIcon={<CloudUploadIcon />}
-                            >
-                                Update
+                            <div className="buttons">
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    className="delete"
+                                    startIcon={<CloudUploadIcon />}
+                                >
+                                    Update
                                 </Button>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                className="delete"
-                                startIcon={<DeleteIcon />}
-                            >
-                                Delete
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className="delete"
+                                    startIcon={<DeleteIcon />}
+                                >
+                                    Delete
                                 </Button>
+                            </div>
+
                         </Card>
-                            <br /> </div>
+
+                            <br />
+                        </div>
                     )
                 })
             }

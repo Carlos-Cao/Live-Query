@@ -20,7 +20,7 @@ function App() {
       </BrowserRouter>
 
       <Api />
-
+      <div className="fb-like" data-href="https://questionanswers.azurewebsites.net/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
     </div>
   );
 }

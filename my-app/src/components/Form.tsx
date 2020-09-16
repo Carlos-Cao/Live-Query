@@ -8,6 +8,7 @@ class Form extends Component {
     render() {
         return (
             <div className="form">
+                <p>Enter your First and Last name, then ask your question and give it a description</p>
                 <TextField
                     id="firstInput"
                     label="First Name"

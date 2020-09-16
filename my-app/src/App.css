@@ -27,3 +27,15 @@ body{
 .delete{
   width: 100px;
 }
+
+.logo {
+  width: 100px;
+}
+
+.buttons {
+  margin: auto;
+}
+
+.fb-like {
+  text-align: center;
+}
