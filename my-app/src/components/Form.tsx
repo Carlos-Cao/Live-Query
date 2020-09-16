@@ -24,15 +24,15 @@ class Form extends Component {
                 />
                 <br />
                 <TextField
-                    id="titleInput"
-                    label="Title"
+                    id="questionInput"
+                    label="Query"
                     defaultValue=""
                     required
                     variant="outlined"
                 />
                 <TextField
-                    id="questionInput"
-                    label="Question"
+                    id="descriptionInput"
+                    label="Description"
                     defaultValue=""
                     required
                     variant="outlined"

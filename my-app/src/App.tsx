@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Header from './components/Header';
 import Api from './api/Api';
-import PostApi from './api/PostApi';
 
 function App() {
   return (

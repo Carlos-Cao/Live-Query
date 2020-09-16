@@ -7,13 +7,13 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 interface Ask {
     firstName: string;
     lastName: string;
-    title: string;
     question: string;
+    description: string;
 }
 
 function Api() {
-    const url = 'https://questionanswersapi.azurewebsites.net/api/Questions';
-    const [questions, setQuestions] = useState<Ask[]>([{ firstName: "", lastName: "", title: "", question: "" }]);
+    const url = 'https://livequeryapi.azurewebsites.net/api/Questions';
+    const [questions, setQuestions] = useState<Ask[]>([{ firstName: "", lastName: "", question: "", description: "" }]);
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
@@ -28,10 +28,10 @@ function Api() {
             {
                 questions.map((qa: any, index: any) => {
                     return (
-                        <div> <Card className="cards">
-                            <Card.Body className="cardbody"> <Card.Title>Name: {qa.firstName} {qa.lastName}</Card.Title>
-                                <Card.Title>Title: <u>{qa.title}</u></Card.Title>
-                                <Card.Text>Question: {qa.question} </Card.Text>
+                        <div key={'mykey' + index + 10}> {console.log()} <Card className="cards">
+                            <Card.Body className="cardbody"> <Card.Title >Name: {qa.firstName} {qa.lastName}</Card.Title>
+                                <Card.Title>Query: <u>{qa.question}</u></Card.Title>
+                                <p>Query Description: {qa.description} </p>
                             </Card.Body>
                             <Button
                                 variant="contained"
