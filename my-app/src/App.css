@@ -17,11 +17,13 @@ body{
 
 .cardbody {
   margin: auto;
+  width: 100px;
 }
 
 .cards {
   margin: auto;
-  width: 1000px;
+  width: 100px;
+  
 }
 
 .delete{
@@ -53,4 +55,8 @@ body{
 .formHeader {
   text-align: center;
   margin: auto;
+}
+
+.buttons {
+ text-align: center;
 }

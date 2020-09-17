@@ -14,8 +14,8 @@ interface questionsProps {
 }
 
 const Home: React.FunctionComponent = () => {
-    const history = useHistory();
     const [questions, setQuestions] = useState<questionsProps[]>([{ questionID: 0, firstName: "Loading", lastName: "", question: "Please wait", description: "" }]);
+    const history = useHistory();
 
     useEffect(() => {
         fetchQuestions()
@@ -32,36 +32,33 @@ const Home: React.FunctionComponent = () => {
         history.push('./form');
     }
 
+    function viewQuestion(questionID: number) {
+        history.push(`./form/${questionID}`)
+    }
+
     return (
-        <div className="container">
-            <div>
+        <div>
+            <br />
+            <div className="buttons">
+                <Button size='lg' variant="info" onClick={addQuestion} >Add Question</Button>
             </div>
-            <Table striped bordered hover className="tables">
-                <thead>
-                    <tr>
-                        <th><Button onClick={addQuestion} >Add Question</Button></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {questions.map(qa => (
-                        <tr key={qa.questionID}>
-                            <td>
-                                <Card className="cards" style={{ width: '18rem' }}>
-                                    <Card.Body className="cardbody">
-                                        <Card.Text>{qa.firstName} {qa.lastName}                                        </Card.Text>
-                                        <Card.Title>{qa.question}</Card.Title>
-                                        <Card.Text>{qa.description}</Card.Text>
-                                        <Button variant="success">View</Button> {" "}
-                                        <Button variant="primary">Update</Button> {" "}
-                                        <Button variant="danger">Delete</Button>
-                                    </Card.Body>
-                                </Card>
-                            </td>
-                        </tr>
-                    ))
-                    }
-                </tbody>
-            </Table>
+            <br />
+            {questions.map(qa => (
+                <div key={qa.questionID}>
+                    <Card className="cards" style={{ width: '18rem' }}>
+                        <Card.Body >
+                            <Card.Text>Name: {qa.firstName} {qa.lastName}                                        </Card.Text>
+                            <Card.Title>Question: {qa.question}</Card.Title>
+                            <Card.Text>Description: {qa.description}</Card.Text>
+                            <Button onClick={() => viewQuestion(qa.questionID)} variant="success">View</Button> {" "}
+                            <Button variant="primary">Update</Button> {" "}
+                            <Button variant="danger">Delete</Button>
+                        </Card.Body>
+                    </Card>
+                    <br />
+                </div>
+            ))
+            }
         </div>
     )
 }

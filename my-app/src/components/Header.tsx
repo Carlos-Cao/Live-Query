@@ -5,8 +5,8 @@ import logo from '../images/logo.png';
 const Header: React.FC = () => {
     return (
         <div className="navigation">
-            <Navbar bg="primary" variant="dark">
-                <Navbar.Brand className="navigation" href="#home">
+            <Navbar bg="secondary" variant="dark">
+                <Navbar.Brand className="navigation">
                     <h1 className="animate__heartBeat"> Live Query </h1>
                     <img
                         alt="Live Query Logo"
