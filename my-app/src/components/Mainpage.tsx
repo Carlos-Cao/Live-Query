@@ -23,14 +23,12 @@ const Home: React.FunctionComponent = () => {
     // GET ALL
     async function fetchQuestions() {
         const response = await api.get('/')
-        console.log(response);
         setQuestions(response.data);
     }
 
     // DELETE
     async function deleteQuestion(questionID: number) {
         const response = await api.delete(`/${questionID}`);
-        console.log(response);
         fetchQuestions();
     }
 
@@ -39,6 +37,10 @@ const Home: React.FunctionComponent = () => {
     }
 
     function viewQuestion(questionID: number) {
+        history.push(`./view/${questionID}`)
+    }
+
+    function updateQuestion(questionID: number) {
         history.push(`./form/${questionID}`)
     }
 
@@ -51,22 +53,27 @@ const Home: React.FunctionComponent = () => {
             <br />
             {questions.map(qa => (
                 <div key={qa.questionID}>
-                    <Card className="cards" style={{ width: '18rem' }}>
+                    <Card className="cards" style={{ width: '50%' }}>
                         <Card.Body >
-                            <Card.Subtitle className="mb-2 text-muted"><b>ID:</b> {qa.questionID}</Card.Subtitle>
-                            <Card.Subtitle className="mb-2 text-muted"><b>Name:</b> {qa.firstName} {qa.lastName} </Card.Subtitle>
-                            <Card.Title><b>Question:</b> {qa.question}</Card.Title>
-                            <Card.Text><b>Description:</b> {qa.description}</Card.Text>
-                            <Button onClick={() => viewQuestion(qa.questionID)} variant="success">View</Button> {" "}
-                            <Button variant="warning">Update</Button> {" "}
-                            <Button onClick={() => deleteQuestion(qa.questionID)} variant="danger">Delete</Button>
+                            <Card.Subtitle className="mb-2 text-muted"><b><u>ID:</u></b> {qa.questionID}</Card.Subtitle>
+                            <hr />
+                            <Card.Subtitle className="mb-2 text-muted"><b><u>Name:</u></b> {qa.firstName} {qa.lastName} </Card.Subtitle>
+                            <hr />
+                            <Card.Title><b><u>Question:</u></b> {qa.question}</Card.Title>
+                            <hr />
+                            <Card.Text><b><u>Description:</u></b> {qa.description}</Card.Text>
+                            <div className="buttons">
+                                <Button onClick={() => viewQuestion(qa.questionID)} variant="success">View</Button> {" "}
+                                <Button onClick={() => updateQuestion(qa.questionID)} variant="warning">Update</Button> {" "}
+                                <Button onClick={() => deleteQuestion(qa.questionID)} variant="danger">Delete</Button>
+                            </div>
                         </Card.Body>
                     </Card>
                     <br />
                 </div>
             ))
             }
-        </div>
+        </div >
     )
 }
 export default Home;

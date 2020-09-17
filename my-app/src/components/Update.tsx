@@ -1,6 +1,6 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import api from '../api/Api';
 
 interface questionProps {
@@ -10,18 +10,36 @@ interface questionProps {
     description: string;
 }
 
-const Forms: React.FunctionComponent = () => {
+const Update: React.FunctionComponent = () => {
     const history = useHistory();
     const [detail, setDetail] = useState<questionProps>({ firstName: "", lastName: "", question: "", description: "" })
+    const { questionID } = useParams();
 
     function inputs(e: ChangeEvent<HTMLInputElement>) {
         setDetail({ ...detail, [e.target.name]: e.target.value })
     }
 
-    // POST
+    useEffect(() => {
+        if (questionID !== undefined) {
+            view(questionID);
+        }
+
+    }, [questionID])
+
+    // PUT
     async function post(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        const response = await api.post('/', detail)
+        const response = await api.put(`/${questionID}`, detail)
+    }
+
+    async function view(questionID: string) {
+        const response = await api.get(`/${questionID}`)
+        setDetail({
+            firstName: response.data.firstName,
+            lastName: response.data.lastName,
+            question: response.data.question,
+            description: response.data.description
+        })
     }
 
     function back() {
@@ -32,7 +50,7 @@ const Forms: React.FunctionComponent = () => {
         <div className="container">
             <br />
             <div className="formHeader">
-                <h1> New Question </h1>
+                <h1> Update Question </h1>
                 <div className="buttons">
                     <Button onClick={back} variant="info" size="sm">
                         Back</Button>
@@ -58,11 +76,11 @@ const Forms: React.FunctionComponent = () => {
                         <Form.Control as="textarea" rows={5} name="description" value={detail.description} onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
                     </Form.Group>
                     <Button type="submit" variant="primary" size="sm">
-                        Add New</Button>
+                        Update Question</Button>
                 </Form>
             </div>
         </div >
     )
 }
 
-export default Forms;
+export default Update;

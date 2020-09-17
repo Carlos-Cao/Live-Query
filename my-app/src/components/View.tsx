@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../api/Api';
 import { useHistory } from 'react-router-dom';
@@ -11,26 +11,21 @@ interface ITask {
     description: string;
 }
 
-const View: React.FC = () => {
+const View: React.FunctionComponent = () => {
     const [question, setQuestion] = useState<ITask>({ firstName: "", lastName: "", question: "", description: "" })
     const { questionID } = useParams();
     const history = useHistory();
 
-    function inputs(e: ChangeEvent<HTMLInputElement>) {
-        setQuestion({ ...question, [e.target.name]: e.target.value })
-    }
-
     useEffect(() => {
         if (questionID !== undefined) {
             view(questionID);
-            console.log(questionID);
         }
 
     }, [questionID])
 
+    //GET ONE
     async function view(questionID: string) {
         const response = await api.get(`/${questionID}`)
-        console.log(response);
         setQuestion({
             firstName: response.data.firstName,
             lastName: response.data.lastName,
@@ -46,8 +41,11 @@ const View: React.FC = () => {
     return (
         <div>
             <div className="buttons">
+                <h1>Viewing Question</h1>
                 <Button variant="info" onClick={back}> Back </Button>
             </div>
+            <br />
+
             <Table striped bordered hover>
                 <thead>
                     <tr>
