@@ -29,17 +29,30 @@ const Update: React.FunctionComponent = () => {
     // PUT
     async function post(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        const response = await api.put(`/${questionID}`, detail)
+        try {
+            const response = await api.put(`/${questionID}`, detail)
+            if (response) {
+                alert("Question has been updated!")
+            }
+        } catch (e) {
+            alert("An error has occured with updating");
+
+        }
     }
 
     async function view(questionID: string) {
-        const response = await api.get(`/${questionID}`)
-        setDetail({
-            firstName: response.data.firstName,
-            lastName: response.data.lastName,
-            question: response.data.question,
-            description: response.data.description
-        })
+        try {
+            const response = await api.get(`/${questionID}`)
+            setDetail({
+                firstName: response.data.firstName,
+                lastName: response.data.lastName,
+                question: response.data.question,
+                description: response.data.description
+            })
+        } catch (e) {
+            alert("An error has occured with fetching question");
+
+        }
     }
 
     function back() {

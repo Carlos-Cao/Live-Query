@@ -28,7 +28,11 @@ const Home: React.FunctionComponent = () => {
 
     // DELETE
     async function deleteQuestion(questionID: number) {
-        const response = await api.delete(`/${questionID}`);
+        try {
+            const response = await api.delete(`/${questionID}`);
+        } catch (e) {
+            alert("An error has occured with delete");
+        }
         fetchQuestions();
     }
 
@@ -42,6 +46,10 @@ const Home: React.FunctionComponent = () => {
 
     function updateQuestion(questionID: number) {
         history.push(`./form/${questionID}`)
+    }
+
+    function scroll() {
+        window.scrollTo(0, 0);
     }
 
     return (
@@ -73,6 +81,11 @@ const Home: React.FunctionComponent = () => {
                 </div>
             ))
             }
+            <div className="buttons">
+
+                <p onClick={scroll}>Back to top &#129041;</p>
+                <div className="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
+            </div>
         </div >
     )
 }

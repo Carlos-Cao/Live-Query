@@ -25,13 +25,17 @@ const View: React.FunctionComponent = () => {
 
     //GET ONE
     async function view(questionID: string) {
-        const response = await api.get(`/${questionID}`)
-        setQuestion({
-            firstName: response.data.firstName,
-            lastName: response.data.lastName,
-            question: response.data.question,
-            description: response.data.description
-        })
+        try {
+            const response = await api.get(`/${questionID}`)
+            setQuestion({
+                firstName: response.data.firstName,
+                lastName: response.data.lastName,
+                question: response.data.question,
+                description: response.data.description
+            })
+        } catch (e) {
+            alert("An error has occured with fetching question");
+        }
     }
 
     function back() {

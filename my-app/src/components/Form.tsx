@@ -21,7 +21,15 @@ const Forms: React.FunctionComponent = () => {
     // POST
     async function post(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
-        const response = await api.post('/', detail)
+        try {
+            const response = await api.post('/', detail)
+            if (response) {
+                alert("Question has been posted!");
+            }
+        } catch (e) {
+            console.log(e);
+            alert("Please fill out all the required fields");
+        }
     }
 
     function back() {
