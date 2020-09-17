@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TextField, Button } from "@material-ui/core";
-import PostApi from '../api/PostApi';
+import PostApi from '../api/POSTApi';
 
 class Form extends Component {
 

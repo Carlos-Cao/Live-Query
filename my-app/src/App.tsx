@@ -1,29 +1,20 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './components/Mainpage';
 import Header from './components/Header';
-import Api from './api/Api';
+import Api from './api/GETApi';
+import Form from './components/Form';
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Header />
-
-      <BrowserRouter>
-        <Switch>
-
-          <Route path="/" component={Home} />
-
-        </Switch>
-
-      </BrowserRouter>
-
-      <Api />
-
-
-      <div className="fb-like" data-href="https://questionanswers.azurewebsites.net/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
-    </div>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/form" component={Form} />
+      </Switch >
+    </BrowserRouter>
   );
 }
 
