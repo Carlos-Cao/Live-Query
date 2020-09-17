@@ -1,47 +1,68 @@
-import React, { Component } from 'react';
-import { TextField, Button } from "@material-ui/core";
-import PostApi from '../api/POSTApi';
+import React, { ChangeEvent, Component, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { useHistory, useParams } from 'react-router-dom';
+import api from '../api/Api';
 
-class Form extends Component {
-
-    render() {
-        return (
-            <div className="form">
-                <p>Enter your First and Last name, then ask your question and give it a description</p>
-                <TextField
-                    id="firstInput"
-                    label="First Name"
-                    defaultValue=""
-                    required
-                    variant="outlined"
-                />
-                <TextField
-                    id="lastInput"
-                    label="Last Name"
-                    defaultValue=""
-                    required
-                    variant="outlined"
-                />
-                <br />
-                <TextField
-                    id="questionInput"
-                    label="Query"
-                    defaultValue=""
-                    required
-                    variant="outlined"
-                />
-                <TextField
-                    id="descriptionInput"
-                    label="Description"
-                    defaultValue=""
-                    required
-                    variant="outlined"
-                />
-                <br />
-                <Button onClick={PostApi} variant="contained" color="secondary"> Submit </Button>
-            </div>
-        )
-    }
+interface questionProps {
+    firstName: string;
+    lastName: string;
+    question: string;
+    description: string;
 }
 
-export default Form;
+const Forms: React.FC = () => {
+    const history = useHistory();
+
+    const [detail, setDetail] = useState<questionProps>({ firstName: "", lastName: "", question: "", description: "" })
+
+    function inputs(e: ChangeEvent<HTMLInputElement>) {
+        setDetail({ ...detail, [e.target.name]: e.target.value })
+    }
+
+    // POST
+    async function post(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault();
+        const response = await api.post('/', detail)
+        console.log(response);
+    }
+
+    function back() {
+        history.goBack();
+    }
+
+    return (
+        <div className="container">
+            <br />
+            <div className="formHeader">
+                <h1> New Question </h1>
+                <Button onClick={back} variant="primary" size="sm">
+                    Back</Button>
+            </div>
+            <br />
+            <div className="container">
+                <Form onSubmit={post}>
+                    <Form.Group controlId="exampleForm.ControlInput1">
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control type="text" placeholder="" name="firstName" onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlInput1">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control type="text" placeholder="" name="lastName" onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlInput1">
+                        <Form.Label>Question</Form.Label>
+                        <Form.Control type="text" placeholder="" name="question" onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control as="textarea" rows={5} name="description" onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
+                    </Form.Group>
+                    <Button type="submit" variant="primary" size="sm">
+                        Add New</Button>
+                </Form>
+            </div>
+        </div >
+    )
+}
+
+export default Forms;

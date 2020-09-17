@@ -1,7 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
-import Form from './Form';
+import Forms from '../components/Form';
 import { Table, Card, Button } from 'react-bootstrap';
 import api from '../api/Api';
+import { useHistory } from 'react-router-dom';
 
 
 interface questionsProps {
@@ -13,17 +14,22 @@ interface questionsProps {
 }
 
 const Home: React.FunctionComponent = () => {
-
-    const [questions, setQuestions] = useState<questionsProps[]>([{ questionID: 0, firstName: "", lastName: "", question: "", description: "" }]);
+    const history = useHistory();
+    const [questions, setQuestions] = useState<questionsProps[]>([{ questionID: 0, firstName: "Loading", lastName: "", question: "Please wait", description: "" }]);
 
     useEffect(() => {
         fetchQuestions()
     }, [])
 
+    // GET ALL
     async function fetchQuestions() {
         const response = await api.get('/')
         console.log(response);
         setQuestions(response.data);
+    }
+
+    function addQuestion() {
+        history.push('./form');
     }
 
     return (
@@ -33,11 +39,10 @@ const Home: React.FunctionComponent = () => {
             <Table striped bordered hover className="tables">
                 <thead>
                     <tr>
-                        <th><Button>Add Question</Button></th>
+                        <th><Button onClick={addQuestion} >Add Question</Button></th>
                     </tr>
                 </thead>
                 <tbody>
-
                     {questions.map(qa => (
                         <tr key={qa.questionID}>
                             <td>
