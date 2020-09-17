@@ -65,7 +65,7 @@ const Update: React.FunctionComponent = () => {
             <div className="formHeader">
                 <h1> Update Question </h1>
                 <div className="buttons">
-                    <Button onClick={back} variant="info" size="sm">
+                    <Button onClick={back} variant="info" >
                         Back</Button>
                 </div>
             </div>

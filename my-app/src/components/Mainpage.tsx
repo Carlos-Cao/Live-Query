@@ -12,6 +12,7 @@ interface questionsProps {
     description: string;
 }
 
+
 const Home: React.FunctionComponent = () => {
     const [questions, setQuestions] = useState<questionsProps[]>([{ questionID: 0, firstName: "Loading", lastName: "", question: "Please wait", description: "" }]);
     const history = useHistory();
@@ -30,6 +31,7 @@ const Home: React.FunctionComponent = () => {
     async function deleteQuestion(questionID: number) {
         try {
             const response = await api.delete(`/${questionID}`);
+            console.log(response.data)
         } catch (e) {
             alert("An error has occured with delete");
         }

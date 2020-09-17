@@ -4,7 +4,7 @@ import api from '../api/Api';
 import { useHistory } from 'react-router-dom';
 import { Button, Table } from 'react-bootstrap';
 
-interface ITask {
+interface questionProps {
     firstName: string;
     lastName: string;
     question: string;
@@ -12,8 +12,9 @@ interface ITask {
 }
 
 const View: React.FunctionComponent = () => {
-    const [question, setQuestion] = useState<ITask>({ firstName: "", lastName: "", question: "", description: "" })
+    const [question, setQuestion] = useState<questionProps>({ firstName: "", lastName: "", question: "", description: "" })
     const { questionID } = useParams();
+
     const history = useHistory();
 
     useEffect(() => {
@@ -22,6 +23,7 @@ const View: React.FunctionComponent = () => {
         }
 
     }, [questionID])
+
 
     //GET ONE
     async function view(questionID: string) {
@@ -38,6 +40,7 @@ const View: React.FunctionComponent = () => {
         }
     }
 
+
     function back() {
         history.goBack();
     }
@@ -49,7 +52,6 @@ const View: React.FunctionComponent = () => {
                 <Button variant="info" onClick={back}> Back </Button>
             </div>
             <br />
-
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -68,7 +70,10 @@ const View: React.FunctionComponent = () => {
                     </tr>
                 </tbody>
             </Table>
+
         </div>
+
+
     )
 }
 
