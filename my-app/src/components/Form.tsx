@@ -43,19 +43,19 @@ const Forms: React.FC = () => {
             <div className="container">
                 <Form onSubmit={post}>
                     <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>First Name</Form.Label>
+                        <Form.Label>First Name*</Form.Label>
                         <Form.Control type="text" placeholder="" name="firstName" value={detail.firstName} onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Last Name</Form.Label>
+                        <Form.Label>Last Name*</Form.Label>
                         <Form.Control type="text" placeholder="" name="lastName" value={detail.lastName} onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Question</Form.Label>
+                        <Form.Label>Question*</Form.Label>
                         <Form.Control type="text" placeholder="" name="question" value={detail.question} onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label>Description*</Form.Label>
                         <Form.Control as="textarea" rows={5} name="description" value={detail.description} onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
                     </Form.Group>
                     <Button type="submit" variant="primary" size="sm">

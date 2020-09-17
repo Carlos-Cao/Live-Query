@@ -1,6 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import Forms from '../components/Form';
-import { Table, Card, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Card, Button } from 'react-bootstrap';
 import api from '../api/Api';
 import { useHistory } from 'react-router-dom';
 
@@ -28,6 +27,13 @@ const Home: React.FunctionComponent = () => {
         setQuestions(response.data);
     }
 
+    // DELETE
+    async function deleteQuestion(questionID: number) {
+        const response = await api.delete(`/${questionID}`);
+        console.log(response);
+        fetchQuestions();
+    }
+
     function addQuestion() {
         history.push('./form');
     }
@@ -47,12 +53,13 @@ const Home: React.FunctionComponent = () => {
                 <div key={qa.questionID}>
                     <Card className="cards" style={{ width: '18rem' }}>
                         <Card.Body >
-                            <Card.Text>Name: {qa.firstName} {qa.lastName}                                        </Card.Text>
-                            <Card.Title>Question: {qa.question}</Card.Title>
-                            <Card.Text>Description: {qa.description}</Card.Text>
+                            <Card.Subtitle className="mb-2 text-muted"><b>ID:</b> {qa.questionID}</Card.Subtitle>
+                            <Card.Subtitle className="mb-2 text-muted"><b>Name:</b> {qa.firstName} {qa.lastName} </Card.Subtitle>
+                            <Card.Title><b>Question:</b> {qa.question}</Card.Title>
+                            <Card.Text><b>Description:</b> {qa.description}</Card.Text>
                             <Button onClick={() => viewQuestion(qa.questionID)} variant="success">View</Button> {" "}
-                            <Button variant="primary">Update</Button> {" "}
-                            <Button variant="danger">Delete</Button>
+                            <Button variant="warning">Update</Button> {" "}
+                            <Button onClick={() => deleteQuestion(qa.questionID)} variant="danger">Delete</Button>
                         </Card.Body>
                     </Card>
                     <br />
