@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Mainpage';
 import Header from './components/Header';
-import Api from './api/GETApi';
 import Form from './components/Form';
 
 function App() {
