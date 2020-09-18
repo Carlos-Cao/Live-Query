@@ -11,10 +11,10 @@ interface questionProps {
     description: string;
 }
 
+
 const View: React.FunctionComponent = () => {
     const [question, setQuestion] = useState<questionProps>({ firstName: "", lastName: "", question: "", description: "" })
     const { questionID } = useParams();
-
     const history = useHistory();
 
     useEffect(() => {
@@ -35,6 +35,7 @@ const View: React.FunctionComponent = () => {
                 question: response.data.question,
                 description: response.data.description
             })
+            console.log(response);
         } catch (e) {
             alert("An error has occured with fetching question");
         }

@@ -64,3 +64,15 @@ body{
 html {
   scroll-behavior: smooth;
 }
+
+.fb-like{
+  margin-right: 10px;
+}
+
+.footer {
+  text-align: center;
+ }
+
+ body{
+  background-image: url('./images/clouds.jpg');
+ }

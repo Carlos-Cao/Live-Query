@@ -43,7 +43,7 @@ const Forms: React.FunctionComponent = () => {
                 <h1> New Question </h1>
                 <div className="buttons">
                     <Button onClick={back} variant="info">
-                        Back</Button>
+                        &#8678; Back</Button>
                 </div>
             </div>
             <br />
@@ -66,7 +66,7 @@ const Forms: React.FunctionComponent = () => {
                         <Form.Control as="textarea" rows={5} name="description" value={detail.description} onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
                     </Form.Group>
                     <Button type="submit" variant="primary" size="sm">
-                        Add New</Button>
+                        Add New &#x2714;</Button>
                 </Form>
             </div>
         </div >

@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import api from '../api/Api';
 
 interface questionProps {
+    questionID: number,
     firstName: string;
     lastName: string;
     question: string;
@@ -12,7 +13,7 @@ interface questionProps {
 
 const Update: React.FunctionComponent = () => {
     const history = useHistory();
-    const [detail, setDetail] = useState<questionProps>({ firstName: "", lastName: "", question: "", description: "" })
+    const [detail, setDetail] = useState<questionProps>({ questionID: 0, firstName: "", lastName: "", question: "", description: "" })
     const { questionID } = useParams();
 
     function inputs(e: ChangeEvent<HTMLInputElement>) {
@@ -44,6 +45,7 @@ const Update: React.FunctionComponent = () => {
         try {
             const response = await api.get(`/${questionID}`)
             setDetail({
+                questionID: parseInt(questionID),
                 firstName: response.data.firstName,
                 lastName: response.data.lastName,
                 question: response.data.question,
@@ -66,7 +68,7 @@ const Update: React.FunctionComponent = () => {
                 <h1> Update Question </h1>
                 <div className="buttons">
                     <Button onClick={back} variant="info" >
-                        Back</Button>
+                        &#8678; Back</Button>
                 </div>
             </div>
             <br />
@@ -89,7 +91,7 @@ const Update: React.FunctionComponent = () => {
                         <Form.Control as="textarea" rows={5} name="description" value={detail.description} onChange={(e: ChangeEvent<HTMLInputElement>) => inputs(e)} />
                     </Form.Group>
                     <Button type="submit" variant="primary" size="sm">
-                        Update Question</Button>
+                        Update Question &#x2714;</Button>
                 </Form>
             </div>
         </div >

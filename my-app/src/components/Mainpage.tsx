@@ -12,7 +12,6 @@ interface questionsProps {
     description: string;
 }
 
-
 const Home: React.FunctionComponent = () => {
     const [questions, setQuestions] = useState<questionsProps[]>([{ questionID: 0, firstName: "Loading", lastName: "", question: "Please wait", description: "" }]);
     const history = useHistory();
@@ -58,7 +57,7 @@ const Home: React.FunctionComponent = () => {
         <div>
             <br />
             <div className="buttons">
-                <Button size='lg' variant="info" onClick={addQuestion} >Add Question</Button>
+                <Button size='lg' variant="info" onClick={addQuestion} >Add Question &#10068;</Button>
             </div>
             <br />
             {questions.map(qa => (
@@ -73,9 +72,9 @@ const Home: React.FunctionComponent = () => {
                             <hr />
                             <Card.Text><b><u>Description:</u></b> {qa.description}</Card.Text>
                             <div className="buttons">
-                                <Button onClick={() => viewQuestion(qa.questionID)} variant="success">View</Button> {" "}
-                                <Button onClick={() => updateQuestion(qa.questionID)} variant="warning">Update</Button> {" "}
-                                <Button onClick={() => deleteQuestion(qa.questionID)} variant="danger">Delete</Button>
+                                <Button onClick={() => viewQuestion(qa.questionID)} variant="success">View &#128270;</Button> {" "}
+                                <Button onClick={() => updateQuestion(qa.questionID)} variant="warning">Update &#8683;</Button> {" "}
+                                <Button onClick={() => deleteQuestion(qa.questionID)} variant="danger">Delete &#10060;</Button>
                             </div>
                         </Card.Body>
                     </Card>
@@ -83,10 +82,9 @@ const Home: React.FunctionComponent = () => {
                 </div>
             ))
             }
-            <div className="buttons">
-
+            <div className="footer">
                 <p onClick={scroll}>Back to top &#129041;</p>
-                <div className="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="false"></div>
+                <div className="fb-like" data-href="https://livequery.azurewebsites.net/" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div>
             </div>
         </div >
     )
